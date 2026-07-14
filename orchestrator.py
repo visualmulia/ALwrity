@@ -152,9 +152,9 @@ def generate_article(keyword, niche_name, domain, search_context):
 
     # Prompt configuration
     system_prompt = (
-        "Anda adalah Senior Content Writer dan SEO Expert Bahasa Indonesia.\n"
+        "Anda adalah Senior Content Writer, SEO, dan GEO (Generative Engine Optimization) Expert Bahasa Indonesia.\n"
         "Tugas Anda adalah menulis artikel blog yang mendalam, terstruktur rapi, "
-        "menarik, dan ramah SEO berdasarkan keyword yang diberikan.\n"
+        "menarik, dan ramah SEO/GEO agar mudah dipahami serta dikutip oleh AI Search Engines (seperti Google SGE, Perplexity, dsb).\n"
         "Gunakan Bahasa Indonesia yang alami, mengalir, dan informatif.\n"
         "Format respon wajib berupa JSON valid dengan skema berikut:\n"
         "{\n"
@@ -174,7 +174,8 @@ def generate_article(keyword, niche_name, domain, search_context):
         "3. Gunakan H2 dan H3 untuk membagi topik pembahasan secara logis.\n"
         "4. Fokus pada kegunaan informasi dan AdSense-friendly (CPC tinggi).\n"
         "5. Jangan buat judul H1 di awal isi konten (properti 'content'), cukup tulis langsung pembahasannya.\n"
-        "6. Kembalikan respon hanya dalam bentuk JSON valid sesuai skema yang telah ditentukan."
+        "6. Optimalkan GEO (Generative Engine Optimization): Gunakan pendekatan 'answer-first' (berikan jawaban ringkas/kesimpulan langsung di awal paragraf H2 sebelum penjelasan rinci). Sertakan juga minimal satu tabel perbandingan (comparison table) dalam format Markdown untuk merangkum perbandingan fitur, kelebihan/kekurangan, atau data pendukung lainnya.\n"
+        "7. Kembalikan respon hanya dalam bentuk JSON valid sesuai skema yang telah ditentukan."
     )
 
     if search_context:
