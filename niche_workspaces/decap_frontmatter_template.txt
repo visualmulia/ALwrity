@@ -1,0 +1,10 @@
+---
+title: "{{title}}"
+date: "{{date}}"
+author: "Admin"
+featured_image: "{{image_path}}"
+tags:
+  - "{{tag1}}"
+  - "{{tag2}}"
+description: "{{meta_description}}"
+---
