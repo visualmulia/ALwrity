@@ -48,8 +48,5 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          # Pull latest changes first (before staging files) to prevent rebase index conflicts
-          git pull origin HEAD --rebase
-          git add niche_workspaces/*/keywords.txt publish_log.csv
-          # Commit and push only if there are local modifications
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update publish log and keywords [skip ci]" && git push origin HEAD)
+          # Commit locally first if there are modifications, then pull with rebase and push to avoid unstaged conflict errors
+          git diff --quiet && git diff --staged --quiet || (git add niche_workspaces/*/keywords.txt publish_log.csv && git commit -m "Update publish log and keywords [skip ci]" && git pull origin HEAD --rebase && git push origin HEAD)
