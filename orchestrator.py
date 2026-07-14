@@ -324,8 +324,8 @@ def main():
     """Main execution orchestrator."""
     logger.info("Starting Daily Ternak Blog Orchestrator...")
     
-    # 1. Determine day of the week (temporarily overridden to Monday)
-    today = 0
+    # 1. Determine day of the week
+    today = datetime.datetime.today().weekday()
     
     # Sunday is 6
     if today == 6:
