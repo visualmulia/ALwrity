@@ -326,7 +326,15 @@ def main():
     logger.info("Starting Daily Ternak Blog Orchestrator...")
     
     # 1. Determine day of the week
-    today = datetime.datetime.today().weekday()
+    weekday_override = os.getenv("WEEKDAY_OVERRIDE")
+    if weekday_override and weekday_override != "default":
+        try:
+            today = int(weekday_override)
+            logger.info(f"Using weekday override from environment: {today}")
+        except ValueError:
+            today = datetime.datetime.today().weekday()
+    else:
+        today = datetime.datetime.today().weekday()
     
     # Sunday is 6
     if today == 6:

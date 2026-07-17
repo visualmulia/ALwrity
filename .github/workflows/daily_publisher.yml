@@ -4,7 +4,21 @@ on:
   schedule:
     # Run daily at 00:00 UTC (07:00 WIB)
     - cron: '0 0 * * *'
-  workflow_dispatch: # Allow manual trigger from the Actions tab
+  workflow_dispatch:
+    inputs:
+      weekday_override:
+        description: 'Pilih Blog Niche (0=Senin/AI, 1=Selasa/Productivity, 2=Rabu/Gardening, 3=Kamis/Frugal, 4=Jumat/Travel, 5=Sabtu/Pets, default=Sesuai Hari Ini)'
+        required: true
+        default: 'default'
+        type: choice
+        options:
+          - 'default'
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
 
 jobs:
   publish:
@@ -40,6 +54,7 @@ jobs:
           TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
           SERPER_API_KEY: ${{ secrets.SERPER_API_KEY }}
           GITHUB_PAT: ${{ secrets.GH_PAT_TOKEN }}
+          WEEKDAY_OVERRIDE: ${{ github.event.inputs.weekday_override }}
         run: |
           python orchestrator.py
 
